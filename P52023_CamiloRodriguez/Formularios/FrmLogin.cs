@@ -56,5 +56,12 @@ namespace P52023_CamiloRodriguez.Formularios
         {
 
         }
+
+        private void BtnIngresar_Click(object sender, EventArgs e)
+        {
+            Globales.ObjetosGlobales.MiFormularioPrincipal.Show();
+            this.Hide();
+
+        }
     }
 }
