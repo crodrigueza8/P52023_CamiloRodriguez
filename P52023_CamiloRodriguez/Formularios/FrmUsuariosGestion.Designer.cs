@@ -44,10 +44,10 @@
             this.TxtUsuarioDireccion = new System.Windows.Forms.TextBox();
             this.TxtUsuarioTelefono = new System.Windows.Forms.TextBox();
             this.TxtUsuarioContrasennia = new System.Windows.Forms.TextBox();
-            this.CboxUsuarioRol = new System.Windows.Forms.ComboBox();
+            this.CboxUsuarioTipoRol = new System.Windows.Forms.ComboBox();
             this.TxtUsuarioCorreo = new System.Windows.Forms.TextBox();
             this.TxtUsuarioNombre = new System.Windows.Forms.TextBox();
-            this.TxtCedula = new System.Windows.Forms.TextBox();
+            this.TxtUsuarioCedula = new System.Windows.Forms.TextBox();
             this.TxtUsuarioCodigo = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -61,6 +61,13 @@
             this.BtnEliminar = new System.Windows.Forms.Button();
             this.BtnLimpiar = new System.Windows.Forms.Button();
             this.BtnCerrar = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.DgvListaUsuarios)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -165,15 +172,20 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label15);
+            this.groupBox1.Controls.Add(this.label14);
+            this.groupBox1.Controls.Add(this.label12);
+            this.groupBox1.Controls.Add(this.label11);
+            this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.CbUsuarioActivo);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.TxtUsuarioDireccion);
             this.groupBox1.Controls.Add(this.TxtUsuarioTelefono);
             this.groupBox1.Controls.Add(this.TxtUsuarioContrasennia);
-            this.groupBox1.Controls.Add(this.CboxUsuarioRol);
+            this.groupBox1.Controls.Add(this.CboxUsuarioTipoRol);
             this.groupBox1.Controls.Add(this.TxtUsuarioCorreo);
             this.groupBox1.Controls.Add(this.TxtUsuarioNombre);
-            this.groupBox1.Controls.Add(this.TxtCedula);
+            this.groupBox1.Controls.Add(this.TxtUsuarioCedula);
             this.groupBox1.Controls.Add(this.TxtUsuarioCodigo);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.label7);
@@ -220,47 +232,47 @@
             // 
             // TxtUsuarioTelefono
             // 
-            this.TxtUsuarioTelefono.Location = new System.Drawing.Point(34, 252);
+            this.TxtUsuarioTelefono.Location = new System.Drawing.Point(34, 257);
             this.TxtUsuarioTelefono.Name = "TxtUsuarioTelefono";
             this.TxtUsuarioTelefono.Size = new System.Drawing.Size(293, 20);
             this.TxtUsuarioTelefono.TabIndex = 13;
             // 
             // TxtUsuarioContrasennia
             // 
-            this.TxtUsuarioContrasennia.Location = new System.Drawing.Point(404, 96);
+            this.TxtUsuarioContrasennia.Location = new System.Drawing.Point(404, 101);
             this.TxtUsuarioContrasennia.Name = "TxtUsuarioContrasennia";
             this.TxtUsuarioContrasennia.Size = new System.Drawing.Size(333, 20);
             this.TxtUsuarioContrasennia.TabIndex = 12;
             // 
-            // CboxUsuarioRol
+            // CboxUsuarioTipoRol
             // 
-            this.CboxUsuarioRol.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CboxUsuarioRol.FormattingEnabled = true;
-            this.CboxUsuarioRol.Location = new System.Drawing.Point(404, 45);
-            this.CboxUsuarioRol.Name = "CboxUsuarioRol";
-            this.CboxUsuarioRol.Size = new System.Drawing.Size(333, 21);
-            this.CboxUsuarioRol.TabIndex = 11;
+            this.CboxUsuarioTipoRol.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CboxUsuarioTipoRol.FormattingEnabled = true;
+            this.CboxUsuarioTipoRol.Location = new System.Drawing.Point(404, 45);
+            this.CboxUsuarioTipoRol.Name = "CboxUsuarioTipoRol";
+            this.CboxUsuarioTipoRol.Size = new System.Drawing.Size(333, 21);
+            this.CboxUsuarioTipoRol.TabIndex = 11;
             // 
             // TxtUsuarioCorreo
             // 
-            this.TxtUsuarioCorreo.Location = new System.Drawing.Point(34, 202);
+            this.TxtUsuarioCorreo.Location = new System.Drawing.Point(34, 207);
             this.TxtUsuarioCorreo.Name = "TxtUsuarioCorreo";
             this.TxtUsuarioCorreo.Size = new System.Drawing.Size(293, 20);
             this.TxtUsuarioCorreo.TabIndex = 10;
             // 
             // TxtUsuarioNombre
             // 
-            this.TxtUsuarioNombre.Location = new System.Drawing.Point(34, 146);
+            this.TxtUsuarioNombre.Location = new System.Drawing.Point(34, 151);
             this.TxtUsuarioNombre.Name = "TxtUsuarioNombre";
             this.TxtUsuarioNombre.Size = new System.Drawing.Size(293, 20);
             this.TxtUsuarioNombre.TabIndex = 9;
             // 
-            // TxtCedula
+            // TxtUsuarioCedula
             // 
-            this.TxtCedula.Location = new System.Drawing.Point(34, 96);
-            this.TxtCedula.Name = "TxtCedula";
-            this.TxtCedula.Size = new System.Drawing.Size(293, 20);
-            this.TxtCedula.TabIndex = 8;
+            this.TxtUsuarioCedula.Location = new System.Drawing.Point(34, 101);
+            this.TxtUsuarioCedula.Name = "TxtUsuarioCedula";
+            this.TxtUsuarioCedula.Size = new System.Drawing.Size(293, 20);
+            this.TxtUsuarioCedula.TabIndex = 8;
             // 
             // TxtUsuarioCodigo
             // 
@@ -300,7 +312,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(35, 130);
+            this.label5.Location = new System.Drawing.Point(36, 130);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(44, 13);
             this.label5.TabIndex = 3;
@@ -344,6 +356,7 @@
             this.BtnAgregar.TabIndex = 6;
             this.BtnAgregar.Text = "Agregar";
             this.BtnAgregar.UseVisualStyleBackColor = false;
+            this.BtnAgregar.Click += new System.EventHandler(this.BtnAgregar_Click);
             // 
             // BtnModificar
             // 
@@ -397,11 +410,90 @@
             this.BtnCerrar.Text = "Cerrar";
             this.BtnCerrar.UseVisualStyleBackColor = false;
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.Color.IndianRed;
+            this.label10.Location = new System.Drawing.Point(81, 80);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(15, 18);
+            this.label10.TabIndex = 18;
+            this.label10.Text = "*";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.Color.IndianRed;
+            this.label11.Location = new System.Drawing.Point(81, 130);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(15, 18);
+            this.label11.TabIndex = 19;
+            this.label11.Text = "*";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.ForeColor = System.Drawing.Color.IndianRed;
+            this.label12.Location = new System.Drawing.Point(65, 186);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(15, 18);
+            this.label12.TabIndex = 20;
+            this.label12.Text = "*";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.ForeColor = System.Drawing.Color.IndianRed;
+            this.label14.Location = new System.Drawing.Point(463, 26);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(15, 18);
+            this.label14.TabIndex = 22;
+            this.label14.Text = "*";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.ForeColor = System.Drawing.Color.IndianRed;
+            this.label15.Location = new System.Drawing.Point(463, 80);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(15, 18);
+            this.label15.TabIndex = 23;
+            this.label15.Text = "*";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.ForeColor = System.Drawing.Color.IndianRed;
+            this.label16.Location = new System.Drawing.Point(402, 566);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(15, 18);
+            this.label16.TabIndex = 24;
+            this.label16.Text = "*";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.ForeColor = System.Drawing.Color.Black;
+            this.label17.Location = new System.Drawing.Point(414, 566);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(111, 16);
+            this.label17.TabIndex = 25;
+            this.label17.Text = "Datos requeridos";
+            // 
             // FrmUsuariosGestion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(791, 601);
+            this.Controls.Add(this.label16);
+            this.Controls.Add(this.label17);
             this.Controls.Add(this.BtnCerrar);
             this.Controls.Add(this.BtnLimpiar);
             this.Controls.Add(this.BtnEliminar);
@@ -441,10 +533,10 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox CboxUsuarioRol;
+        private System.Windows.Forms.ComboBox CboxUsuarioTipoRol;
         private System.Windows.Forms.TextBox TxtUsuarioCorreo;
         private System.Windows.Forms.TextBox TxtUsuarioNombre;
-        private System.Windows.Forms.TextBox TxtCedula;
+        private System.Windows.Forms.TextBox TxtUsuarioCedula;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox TxtUsuarioDireccion;
         private System.Windows.Forms.TextBox TxtUsuarioTelefono;
@@ -461,5 +553,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColCorreo;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColTelefono;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColRol;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label17;
     }
 }
