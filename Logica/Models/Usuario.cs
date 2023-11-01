@@ -40,13 +40,14 @@ namespace Logica.Models
 
             Conexion MiCnn = new Conexion();
 
-            //Ahorab agregamos los parametros que solicita el SP de agregar 
+            //Ahora agregamos los parametros que solicita el SP de agregar 
 
             MiCnn.ListaDeParametros.Add(new SqlParameter("@Cedula", this.Cedula));
             MiCnn.ListaDeParametros.Add(new SqlParameter("@Nombre", this.Nombre));
             MiCnn.ListaDeParametros.Add(new SqlParameter("@Correo", this.Correo));
-            //TODO: ENCRIPTAR LA CONTRASENiA 
-            MiCnn.ListaDeParametros.Add(new SqlParameter("@Contrasennia", this.Contrasennia));
+            Tools.Crypto MiEncriptador = new Tools.Crypto();
+            string ContrasenniaEncriptada = MiEncriptador.EncriptarEnUnSentido(this.Contrasennia);
+            MiCnn.ListaDeParametros.Add(new SqlParameter("@Contrasennia", ContrasenniaEncriptada));
             MiCnn.ListaDeParametros.Add(new SqlParameter("@Telefono", this.Telefono));          
             MiCnn.ListaDeParametros.Add(new SqlParameter("@Direccion", this.Direccion));
             MiCnn.ListaDeParametros.Add(new SqlParameter("@UsuarioRolID", this.MiUsuarioRol.UsusarioRolID));
@@ -63,7 +64,21 @@ namespace Logica.Models
         {
             bool R = false;
 
+            Conexion MiCnn = new Conexion();
 
+            MiCnn.ListaDeParametros.Add(new SqlParameter("@Cedula", this.Cedula));
+            MiCnn.ListaDeParametros.Add(new SqlParameter("@Nombre", this.Nombre));
+            MiCnn.ListaDeParametros.Add(new SqlParameter("@Correo", this.Correo));
+            Tools.Crypto MiEncriptador = new Tools.Crypto();
+            string ContrasenniaEncriptada = MiEncriptador.EncriptarEnUnSentido(this.Contrasennia);
+            MiCnn.ListaDeParametros.Add(new SqlParameter("@Contrasennia", ContrasenniaEncriptada));
+            MiCnn.ListaDeParametros.Add(new SqlParameter("@Telefono", this.Telefono));
+            MiCnn.ListaDeParametros.Add(new SqlParameter("@Direccion", this.Direccion));
+            MiCnn.ListaDeParametros.Add(new SqlParameter("@UsuarioRolID", this.MiUsuarioRol.UsusarioRolID));
+            MiCnn.ListaDeParametros.Add(new SqlParameter("@ID", this.UsuarioId));
+            int resultado = MiCnn.EjecutarDML("SPUsuariosActualizar");
+
+            if (resultado > 0) R = true;
 
             return R;
         }
@@ -81,6 +96,62 @@ namespace Logica.Models
         {
             bool R = false;
 
+            Conexion MiCnn = new Conexion();
+
+            MiCnn.ListaDeParametros.Add(new SqlParameter("@ID", this.UsuarioId));
+
+            DataTable DatosUsuario = new DataTable();
+
+            DatosUsuario = MiCnn.EjecutarSELECT("SPUsuariosConsultarPorID");
+
+            if (DatosUsuario != null && DatosUsuario.Rows.Count > 0)
+
+            {
+                //el usuario existe 
+                R = true;  
+
+            }
+            
+            return R;
+        }
+
+        public Usuario ConsultarPorID(int IdUsuario)
+        {
+            Usuario R = new Usuario();
+
+            //Esta funcion retorna un obejto de tipo Usuario con datos en los atributos.
+            //Es una variedad de consultar por ID que nos permite manipular el obejto y no 
+            //solo saber si el usuario existe o no a traves de un bool.
+
+            Conexion MiCnn = new Conexion();
+
+            MiCnn.ListaDeParametros.Add (new SqlParameter("@ID", IdUsuario));
+
+            DataTable DatosUsuario = new DataTable();
+
+            DatosUsuario = MiCnn.EjecutarSELECT("SPUsuariosConsultarPorID");
+
+            if (DatosUsuario != null && DatosUsuario.Rows.Count > 0)
+
+                //como tenemos que llenar un objeto compuesto (por el rol del usuario)
+                //debemos extraer los datos de la consulta y llenar los atributos
+                //correspondientes del objeto de tipo Usuario R.
+            {
+                //acá capturamos los datos de la fila 0 del resultado 
+                DataRow MiFila = DatosUsuario.Rows[0];
+
+                R.UsuarioId = Convert.ToInt32(MiFila["UsuarioID"]);
+                R.Nombre = Convert.ToString(MiFila["Nombre"]);
+                R.Cedula = Convert.ToString(MiFila["Cedula"]);
+                R.Correo = Convert.ToString(MiFila["Correo"]);
+                R.Telefono = Convert.ToString(MiFila["Telefono"]);
+                R.Contrasennia = Convert.ToString(MiFila["Contrasennia"]);
+                R.Direccion = Convert.ToString(MiFila["Direccion"]);
+                R.MiUsuarioRol.UsusarioRolID = Convert.ToInt32(MiFila["UsuarioRolID"]);
+                R.MiUsuarioRol.Rol = Convert.ToString(MiFila["Rol"]);
+                R.Activo = Convert.ToBoolean(MiFila["Activo"]);
+        
+            }        
 
 
             return R;
