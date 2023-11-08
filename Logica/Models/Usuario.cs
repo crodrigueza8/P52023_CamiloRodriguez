@@ -87,7 +87,29 @@ namespace Logica.Models
         {
             bool R = false;
 
+            Conexion MiCnn =  new Conexion();
 
+            MiCnn.ListaDeParametros.Add(new SqlParameter("@ID", this.UsuarioId));
+
+            int resultado = MiCnn.EjecutarDML("SPUsuariosEliminar");
+
+            if (resultado > 0) R = true;
+
+            return R;
+        }
+
+
+        public bool Activar()
+        {
+            bool R = false;
+
+            Conexion MiCnn = new Conexion();
+
+            MiCnn.ListaDeParametros.Add(new SqlParameter("@ID", this.UsuarioId));
+
+            int resultado = MiCnn.EjecutarDML("SPUsuariosActivar");
+
+            if (resultado > 0) R = true;
 
             return R;
         }
@@ -191,7 +213,7 @@ namespace Logica.Models
             return R;
         }
 
-        public DataTable ListarActivos()
+        public DataTable ListarActivos(string pFiltro = "")
         {
             DataTable R = new DataTable();
 
@@ -199,15 +221,24 @@ namespace Logica.Models
             Conexion MiCnn = new Conexion();
             //como el SP requiere un parametro para listar , hay que agregarlo a la lista 
             MiCnn.ListaDeParametros.Add(new SqlParameter("@VerActivos", true));
+            MiCnn.ListaDeParametros.Add(new SqlParameter("@Filtro", pFiltro));
 
             R = MiCnn.EjecutarSELECT("SPUsuariosListar"); 
 
             return R;
         }
 
-        public DataTable ListarInactivos()
+        public DataTable ListarInactivos(string pFiltro = "")
         {
             DataTable R = new DataTable();
+
+            //Hacemoss unn a innstancia d ela clase conexion 
+            Conexion MiCnn = new Conexion();
+            //como el SP requiere un parametro para listar , hay que agregarlo a la lista 
+            MiCnn.ListaDeParametros.Add(new SqlParameter("@VerActivos", false));
+            MiCnn.ListaDeParametros.Add(new SqlParameter("@Filtro", pFiltro));
+
+            R = MiCnn.EjecutarSELECT("SPUsuariosListar");
 
             return R;
         }

@@ -30,7 +30,7 @@ namespace P52023_CamiloRodriguez.Formularios
 
             CargarComboRolesDeUsuario();
 
-            CargarListaUsuarios();
+            CargarListaUsuarios(CbVerActivos.Checked);
             ActivarBotonAgregar();
         }
 
@@ -57,15 +57,29 @@ namespace P52023_CamiloRodriguez.Formularios
 
         //Encapsulo todas la funcionalidades especificas  y que se puedan realizar 
 
-        private void CargarListaUsuarios()
+        private void CargarListaUsuarios(bool VerActivos, string FiltroBusqueda = "")
         {
             Logica.Models.Usuario miusuario = new Logica.Models.Usuario();
 
             DataTable lista = new DataTable();
 
-            lista = miusuario.ListarActivos();
+            
 
-            DgvListaUsuarios.DataSource = lista;
+            if (VerActivos) 
+            {
+                //si se quieren ver los usuarios activos 
+                lista = miusuario.ListarActivos(FiltroBusqueda);
+                DgvListaUsuarios.DataSource = lista;    
+            }
+            else
+            {
+                //si se quieren ver los usuarios inactivos 
+                lista = miusuario.ListarInactivos(FiltroBusqueda);
+                DgvListaUsuarios.DataSource = lista;
+
+            }
+
+            
         }
 
         private bool ValidarDatosRequeridos(bool OmitirContrasennia = false)
@@ -202,7 +216,7 @@ namespace P52023_CamiloRodriguez.Formularios
                             MessageBox.Show("Usuario ingresado correctamente!!", ":)", MessageBoxButtons.OK);
 
                             LimpiarForm();
-                            CargarListaUsuarios();
+                            CargarListaUsuarios(CbVerActivos.Checked);
                         }
                         else
                         {
@@ -334,19 +348,134 @@ namespace P52023_CamiloRodriguez.Formularios
                             MessageBox.Show("Usuario actualizado correctamente", "Actualizado", MessageBoxButtons.OK);
 
                             LimpiarForm();
-                            CargarListaUsuarios();
+                            CargarListaUsuarios(CbVerActivos.Checked);
                             ActivarBotonAgregar();
                         }
                     }
+                }
+            }
+        }
 
+        private void BtnEliminar_Click(object sender, EventArgs e)
+        {
+            if (CbVerActivos.Checked)
+            {
+                //Se procede a eliminar
 
+                if (MiUsuarioLocal.UsuarioId > 0)
+                {
+                    string msg = string.Format("¿Está seguro de eliminar al usuario {0}?", MiUsuarioLocal.Nombre);
 
+                    DialogResult respuesta = MessageBox.Show(msg, "Confirmación requerida", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
+                    if (respuesta == DialogResult.Yes && MiUsuarioLocal.Eliminar())
+                    {
 
+                        MessageBox.Show("El usuario ha sido eliminado", "!!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        LimpiarForm();
+
+                        CargarListaUsuarios(CbVerActivos.Checked);
+
+                        ActivarBotonAgregar();
+
+                    }
                 }
 
+            }
+
+            else
+
+            {
+                //se procede a activar
+
+                if (MiUsuarioLocal.UsuarioId > 0)
+                {
+                    string msg = string.Format("¿Está seguro de activar al usuario {0}?", MiUsuarioLocal.Nombre);
+
+                    DialogResult respuesta = MessageBox.Show(msg, "Confirmación requerida", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    if (respuesta == DialogResult.Yes && MiUsuarioLocal.Activar())
+                    {
+
+                        MessageBox.Show("El usuario ha sido activado", "!!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        LimpiarForm();
+
+                        CargarListaUsuarios(CbVerActivos.Checked);
+
+                        ActivarBotonAgregar();
+
+                    }
+                }
+
+            }
 
 
+
+
+
+            
+        }
+
+        private void TxtUsuarioCedula_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = Tools.Validaciones.CaracteresNumeros(e);
+        }
+
+        private void TxtUsuarioNombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled =  Tools.Validaciones.CaracteresTexto(e);
+        }
+
+        private void TxtUsuarioCorreo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = Tools.Validaciones.CaracteresTexto(e, false, true);
+        }
+
+        private void TxtUsuarioTelefono_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = Tools.Validaciones.CaracteresNumeros(e);
+        }
+
+        private void TxtUsuarioContrasennia_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = Tools.Validaciones.CaracteresTexto(e);
+        }
+
+        private void TxtUsuarioDireccion_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = Tools.Validaciones.CaracteresTexto(e);
+        }
+
+        private void BtnCerrar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void CbVerActivos_CheckedChanged(object sender, EventArgs e)
+        {
+            CargarListaUsuarios(CbVerActivos.Checked);
+
+            if (CbVerActivos.Checked)
+            {
+                BtnEliminar.Text = "ELIMINAR";
+            }
+            else
+            {
+                BtnEliminar.Text = "ACTIVAR";
+            }
+        }
+
+        private void TxtBuscar_TextChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(TxtBuscar.Text.Trim())&& TxtBuscar.Text.Count() >= 3)
+            {
+                CargarListaUsuarios(CbVerActivos.Checked, TxtBuscar.Text.Trim());
+            }
+            else
+            {
+                CargarListaUsuarios(CbVerActivos.Checked);
             }
         }
     }

@@ -14,10 +14,11 @@ namespace P52023_CamiloRodriguez.Globales
 
         public static Form MiFormularioPrincipal = new Formularios.FrmPrincipal(); 
 
-        public static Formularios.FrmUsuariosGestion MiFormularioDeGestionDeUsuarios = new Formularios.FrmUsuariosGestion();
+        public static Formularios.FrmUsuariosGestion 
+            MiFormularioDeGestionDeUsuarios = new Formularios.FrmUsuariosGestion();
 
 
-
+        public static Logica.Models.Usuario MiUsuarioGlobal = new Logica.Models.Usuario();
 
 
 
