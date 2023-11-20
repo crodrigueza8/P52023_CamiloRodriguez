@@ -16,8 +16,13 @@ namespace Logica.Models
         {
             DataTable R = new DataTable();
 
-            return R;
+            Conexion MiCnn = new Conexion();
 
+            R = MiCnn.EjecutarSELECT("SPMovimientosTiposListar");
+
+            //aca va la progra funcional para realizar el Listar
+
+            return R;
         }
     }
 }

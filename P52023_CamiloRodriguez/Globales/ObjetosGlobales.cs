@@ -21,7 +21,9 @@ namespace P52023_CamiloRodriguez.Globales
         public static Logica.Models.Usuario MiUsuarioGlobal = new Logica.Models.Usuario();
 
 
-
+        //Formulario de movimientos de productos
+        public static Formularios.FrmMovimientosInventario 
+            MiFormularioMovimientos = new Formularios.FrmMovimientosInventario();
 
     }
 }

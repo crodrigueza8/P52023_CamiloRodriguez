@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using Logica.Tools;
 
 namespace Logica.Models
 {
@@ -239,6 +240,31 @@ namespace Logica.Models
             MiCnn.ListaDeParametros.Add(new SqlParameter("@Filtro", pFiltro));
 
             R = MiCnn.EjecutarSELECT("SPUsuariosListar");
+
+            return R;
+        }
+
+        public int ValidarIngreso(string pUsuario, string pContrasennia)
+        {
+            int R = 0;
+
+            Conexion MiCnn = new Conexion();
+
+            Crypto myEncriptador = new Crypto();
+
+            string PasswordEncriptado = myEncriptador.EncriptarEnUnSentido(pContrasennia);
+
+            MiCnn.ListaDeParametros.Add(new SqlParameter("@Usuario", pUsuario));
+            MiCnn.ListaDeParametros.Add(new SqlParameter("@Contrasennia", PasswordEncriptado));
+
+            DataTable Resultado = MiCnn.EjecutarSELECT("SPUsuariosValidarIngreso");
+
+            if (Resultado != null && Resultado.Rows.Count > 0)
+            {
+                DataRow MiFila = Resultado.Rows[0];
+
+                R = Convert.ToInt32(MiFila["UsuarioID"]);
+            }
 
             return R;
         }

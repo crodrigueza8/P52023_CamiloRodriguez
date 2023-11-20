@@ -478,6 +478,11 @@ namespace P52023_CamiloRodriguez.Formularios
                 CargarListaUsuarios(CbVerActivos.Checked);
             }
         }
+
+        private void CboxUsuarioTipoRol_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 

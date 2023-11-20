@@ -315,6 +315,7 @@
             this.CboxUsuarioTipoRol.Name = "CboxUsuarioTipoRol";
             this.CboxUsuarioTipoRol.Size = new System.Drawing.Size(333, 21);
             this.CboxUsuarioTipoRol.TabIndex = 11;
+            this.CboxUsuarioTipoRol.SelectedIndexChanged += new System.EventHandler(this.CboxUsuarioTipoRol_SelectedIndexChanged);
             // 
             // TxtUsuarioCorreo
             // 
