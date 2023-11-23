@@ -73,7 +73,21 @@ namespace Logica.Models
 
         List<MovimientoDetalle> Detalles { get; set; }
 
+        public DataTable AsignarEsquemaDelDetalle()
+        {
+            DataTable R = new DataTable();
 
+            Conexion MiCnn = new Conexion();
+
+            //Queremos cargar el esquema del data table, no los datos 
+            R = MiCnn.EjecutarSELECT("SPMovimientoCargarDetalle", true);
+
+            //Para evitar que el identity 1,1 , que esta originalmente en la tabla 
+            //Me genere numeros unicos que impidan repetir registros
+            R.PrimaryKey = null;
+
+            return R;
+        }
     }
 
 }
