@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,7 +26,7 @@ namespace Logica.Models
 
         public string Anotaciones { get; set; }
 
-        public int MyProperty { get; set; }
+        
 
         //Funciones
 
@@ -33,7 +34,46 @@ namespace Logica.Models
         {
             bool R = false;
 
+            //Hacemos un insert en el encabezado y recolectamos el ID que se genera 
+            //Esto es necesario ya que se necesita como FK en la tabla detalle.
+           
+            Conexion MiCnn = new Conexion();
 
+            MiCnn.ListaDeParametros.Add(new SqlParameter("@Fecha", this.Fecha));
+            MiCnn.ListaDeParametros.Add(new SqlParameter("@Anotaciones", this.Anotaciones));
+            MiCnn.ListaDeParametros.Add(new SqlParameter("@TipoMovimiento", this.MiTipo.MovimientoTipoID));
+            MiCnn.ListaDeParametros.Add(new SqlParameter("@UsuarioID", this.MiUsuario.UsuarioId));
+            
+            //Generico
+            Object RetornoSPAgregar = MiCnn.EjecutarSELECTEscalar("SPMovimientosAgregarEncabezado");
+
+            int IDMovimientoRecienCreado;
+
+            if (RetornoSPAgregar != null)
+            {
+                //Especializado
+                IDMovimientoRecienCreado = Convert.ToInt32(RetornoSPAgregar.ToString());
+
+                foreach (MovimientoDetalle item in this.Detalles)
+                {
+                    //Por cada iteracion en la lista de detalles hacemos un insert en la tabla detalles 
+
+                    Conexion MiCnnDetalle = new Conexion();
+                    MiCnnDetalle.ListaDeParametros.Add(new SqlParameter("@IDMovimiento", IDMovimientoRecienCreado));
+                    MiCnnDetalle.ListaDeParametros.Add(new SqlParameter("@IDProducto", item.MiProducto.ProductoId));
+                    MiCnnDetalle.ListaDeParametros.Add(new SqlParameter("@Cantidad", item.CantidadMovimiento));
+                    MiCnnDetalle.ListaDeParametros.Add(new SqlParameter("@Costo",item.Costo));
+                    MiCnnDetalle.ListaDeParametros.Add(new SqlParameter("@Subtotal",item.SubTotal));
+                    MiCnnDetalle.ListaDeParametros.Add(new SqlParameter("@TotalIVA",item.TotalIVA));
+                    MiCnnDetalle.ListaDeParametros.Add(new SqlParameter("@PrecioUnitario",item.PrecioUnitario));
+
+                    MiCnnDetalle.EjecutarDML("SPMovimientosAgregarDetalle");
+
+
+                }
+
+                R = true;
+            }
 
             return R;
         }
@@ -71,7 +111,7 @@ namespace Logica.Models
         //vemos que al llegar a la clase de dettale  termina en "muchos"
         //1* Eso significa que el atribute tiene multiplicidad o sea que se puede repetir n veces
 
-        List<MovimientoDetalle> Detalles { get; set; }
+        public List<MovimientoDetalle> Detalles { get; set; }
 
         public DataTable AsignarEsquemaDelDetalle()
         {

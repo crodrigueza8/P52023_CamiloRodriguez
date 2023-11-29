@@ -47,6 +47,9 @@
             this.CPrecioUnitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CCodigoBarras = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.BtnAgregar = new System.Windows.Forms.ToolStripButton();
+            this.BtnModificar = new System.Windows.Forms.ToolStripButton();
+            this.BtnEliminar = new System.Windows.Forms.ToolStripButton();
             this.BtnAplicar = new System.Windows.Forms.Button();
             this.BtnCancelar = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -59,9 +62,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.LblTotalCosto = new System.Windows.Forms.Label();
-            this.BtnAgregar = new System.Windows.Forms.ToolStripButton();
-            this.BtnModificar = new System.Windows.Forms.ToolStripButton();
-            this.BtnEliminar = new System.Windows.Forms.ToolStripButton();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvListaDetalle)).BeginInit();
@@ -245,6 +245,38 @@
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
+            // BtnAgregar
+            // 
+            this.BtnAgregar.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.BtnAgregar.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnAgregar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.BtnAgregar.Image = ((System.Drawing.Image)(resources.GetObject("BtnAgregar.Image")));
+            this.BtnAgregar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnAgregar.Name = "BtnAgregar";
+            this.BtnAgregar.Size = new System.Drawing.Size(90, 24);
+            this.BtnAgregar.Text = "Agregar ";
+            this.BtnAgregar.Click += new System.EventHandler(this.BtnAgregar_Click);
+            // 
+            // BtnModificar
+            // 
+            this.BtnModificar.BackColor = System.Drawing.Color.Khaki;
+            this.BtnModificar.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnModificar.Image = ((System.Drawing.Image)(resources.GetObject("BtnModificar.Image")));
+            this.BtnModificar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnModificar.Name = "BtnModificar";
+            this.BtnModificar.Size = new System.Drawing.Size(96, 24);
+            this.BtnModificar.Text = "Modificar";
+            // 
+            // BtnEliminar
+            // 
+            this.BtnEliminar.BackColor = System.Drawing.Color.LightPink;
+            this.BtnEliminar.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnEliminar.Image = ((System.Drawing.Image)(resources.GetObject("BtnEliminar.Image")));
+            this.BtnEliminar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnEliminar.Name = "BtnEliminar";
+            this.BtnEliminar.Size = new System.Drawing.Size(86, 24);
+            this.BtnEliminar.Text = "Eliminar";
+            // 
             // BtnAplicar
             // 
             this.BtnAplicar.BackColor = System.Drawing.Color.DarkSeaGreen;
@@ -255,6 +287,7 @@
             this.BtnAplicar.TabIndex = 3;
             this.BtnAplicar.Text = "Aplicar";
             this.BtnAplicar.UseVisualStyleBackColor = false;
+            this.BtnAplicar.Click += new System.EventHandler(this.BtnAplicar_Click);
             // 
             // BtnCancelar
             // 
@@ -402,38 +435,6 @@
             this.LblTotalCosto.TabIndex = 1;
             this.LblTotalCosto.Text = "0";
             this.LblTotalCosto.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // BtnAgregar
-            // 
-            this.BtnAgregar.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.BtnAgregar.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnAgregar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.BtnAgregar.Image = ((System.Drawing.Image)(resources.GetObject("BtnAgregar.Image")));
-            this.BtnAgregar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BtnAgregar.Name = "BtnAgregar";
-            this.BtnAgregar.Size = new System.Drawing.Size(90, 24);
-            this.BtnAgregar.Text = "Agregar ";
-            this.BtnAgregar.Click += new System.EventHandler(this.BtnAgregar_Click);
-            // 
-            // BtnModificar
-            // 
-            this.BtnModificar.BackColor = System.Drawing.Color.Khaki;
-            this.BtnModificar.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnModificar.Image = ((System.Drawing.Image)(resources.GetObject("BtnModificar.Image")));
-            this.BtnModificar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BtnModificar.Name = "BtnModificar";
-            this.BtnModificar.Size = new System.Drawing.Size(96, 24);
-            this.BtnModificar.Text = "Modificar";
-            // 
-            // BtnEliminar
-            // 
-            this.BtnEliminar.BackColor = System.Drawing.Color.LightPink;
-            this.BtnEliminar.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnEliminar.Image = ((System.Drawing.Image)(resources.GetObject("BtnEliminar.Image")));
-            this.BtnEliminar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BtnEliminar.Name = "BtnEliminar";
-            this.BtnEliminar.Size = new System.Drawing.Size(86, 24);
-            this.BtnEliminar.Text = "Eliminar";
             // 
             // FrmMovimientosInventario
             // 
