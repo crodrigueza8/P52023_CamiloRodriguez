@@ -84,5 +84,18 @@ namespace P52023_CamiloRodriguez.Formularios
                 Globales.ObjetosGlobales.MiFormularioMovimientos.Show();
             }
         }
+
+        private void MnuGestionProductos_Click(object sender, EventArgs e)
+        {
+            //En este caso quiero la ventan se muestre solo una vez en la aplicacion
+            //para esto hay que revisar si la ventana esta o no visible 
+
+            if (!Globales.ObjetosGlobales.MiFormularioGestionDeProductos.Visible)
+            {
+                Globales.ObjetosGlobales.MiFormularioGestionDeProductos = new FrmProductosGestion();
+
+                Globales.ObjetosGlobales.MiFormularioGestionDeProductos.Show();
+            }
+        }
     }
 }

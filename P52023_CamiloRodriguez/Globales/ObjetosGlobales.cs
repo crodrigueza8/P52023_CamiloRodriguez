@@ -25,5 +25,9 @@ namespace P52023_CamiloRodriguez.Globales
         public static Formularios.FrmMovimientosInventario 
             MiFormularioMovimientos = new Formularios.FrmMovimientosInventario();
 
+        //Formulario de productos
+        public static Formularios.FrmProductosGestion
+            MiFormularioGestionDeProductos = new Formularios.FrmProductosGestion();
+
     }
 }

@@ -10,14 +10,18 @@ namespace Logica.Models
     public class ProductoCategoria
     {
         public int ProductoCategoriaID { get; set; }
-        public string PoductoCategoriaDescripcion { get; set; }
+        public string ProductoCategoriaDescripcion { get; set; }
 
         public DataTable Listar()
         {
             DataTable R = new DataTable();
 
-            return R;
+            Conexion MiCnn = new Conexion();
 
+            R = MiCnn.EjecutarSELECT("SPProductosCategoriaListar");
+
+
+            return R;
         }
     }
 }
